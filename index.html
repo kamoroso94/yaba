@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <title>Yaba - Simple zero-based budgeting</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <meta name="application-name" content="Yaba" />
+    <meta name="author" content="Kyle Amoroso" />
+    <meta
+      name="description"
+      content='Yaba is "Yet Another Budget App" built to make zero-based budgeting simple and free.'
+    />
+    <meta name="keywords" content="yaba,budget,budgeting,zero-based" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#77dd77" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2b3035" />
+    <meta name="color-scheme" content="dark light" />
+    <script>
+      (() => {
+        "use strict";
+
+        function setPreferredTheme() {
+          const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+          document.documentElement.setAttribute("data-bs-theme", theme);
+        }
+
+        setPreferredTheme();
+        window
+          .matchMedia("(prefers-color-scheme: dark)")
+          .addEventListener("change", setPreferredTheme);
+      })();
+    </script>
+
+    <link rel="icon" type="image/x-icon" sizes="16x16 32x32 64x64 128x128" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="icons/favicon-64.png" />
+    <link rel="icon" type="image/png" sizes="128x128" href="icons/favicon-128.png" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap&text=Yaba"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg sticky-top mb-3 bg-body-tertiary">
+      <div class="container">
+        <a class="navbar-brand" href="#">Yaba</a>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="input-group mb-3">
+        <label for="total-budget" class="input-group-text">Total budget</label>
+        <span class="input-group-text">$</span>
+        <input
+          type="text"
+          id="total-budget"
+          inputmode="decimal"
+          placeholder="0.00"
+          class="form-control"
+        />
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
