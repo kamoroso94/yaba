@@ -1,0 +1,24 @@
+{
+  "name": "yaba",
+  "version": "1.0.0",
+  "description": "Yaba is \"Yet Another Budgeting App\" built to make zero-based budgeting simple and free.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/kamoroso94/yaba.git"
+  },
+  "keywords": [
+    "yaba",
+    "budget",
+    "budgeting",
+    "zero-based"
+  ],
+  "author": "Kyle Amoroso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kamoroso94/yaba/issues"
+  },
+  "homepage": "https://github.com/kamoroso94/yaba#readme"
+}
