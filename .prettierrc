@@ -1,4 +1,7 @@
+bracketSpacing: false
+singleQuote: true
 overrides:
-  - files: "*.html"
+  - files: '*.html'
     options:
       printWidth: 100
+      singleQuote: false
