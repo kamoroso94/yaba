@@ -1,18 +1,18 @@
 :root,
-[data-bs-theme="light"] {
+[data-bs-theme='light'] {
   --yaba-green: #77dd77;
   --yaba-green-rgb: 119, 221, 119;
 }
 
-[data-bs-theme="light"] .navbar {
+[data-bs-theme='light'] .navbar {
   --bs-tertiary-bg: var(--yaba-green);
   --bs-tertiary-bg-rgb: var(--yaba-green-rgb);
 }
 
-[data-bs-theme="dark"] .navbar {
+[data-bs-theme='dark'] .navbar {
   --bs-navbar-brand-color: var(--yaba-green);
 }
 
 .navbar-brand {
-  font-family: "Pacifico", cursive;
+  font-family: 'Pacifico', cursive;
 }

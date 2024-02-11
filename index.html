@@ -15,22 +15,16 @@
     <meta name="theme-color" media="(prefers-color-scheme: light)" content="#77dd77" />
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#2b3035" />
     <meta name="color-scheme" content="dark light" />
-    <script>
-      (() => {
-        "use strict";
 
-        function setPreferredTheme() {
-          const theme = window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light";
-          document.documentElement.setAttribute("data-bs-theme", theme);
-        }
+    <script type="module">
+      function updateDarkColorScheme({matches}) {
+        const theme = matches ? "dark" : "light";
+        document.documentElement.setAttribute("data-bs-theme", theme);
+      }
 
-        setPreferredTheme();
-        window
-          .matchMedia("(prefers-color-scheme: dark)")
-          .addEventListener("change", setPreferredTheme);
-      })();
+      const darkColorSchemeMedia = window.matchMedia("(prefers-color-scheme: dark)");
+      updateDarkColorScheme(darkColorSchemeMedia);
+      darkColorSchemeMedia.addEventListener("change", updateDarkColorScheme);
     </script>
 
     <link rel="icon" type="image/x-icon" sizes="16x16 32x32 64x64 128x128" href="favicon.ico" />
@@ -57,59 +51,44 @@
     <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script type="module">
-      // Your web app's Firebase configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyCorShCqZfvE16_tNyvygbfSy5o8EQFK0E",
-        authDomain: "yaba-0.firebaseapp.com",
-        projectId: "yaba-0",
-        storageBucket: "yaba-0.appspot.com",
-        messagingSenderId: "297298616389",
-        appId: "1:297298616389:web:2bc5edde8d9a8cdaf4032c",
-      };
-
-      // Initialize Firebase
-      const app = firebase.initializeApp(firebaseConfig);
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth__en.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.js"></script>
     <link
       type="text/css"
       rel="stylesheet"
       href="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.css"
     />
-    <script type="module">
-      // FirebaseUI config.
-      const uiConfig = {
-        signInSuccessUrl: "<url-to-redirect-to-on-success>",
-        signInOptions: [
-          // Leave the lines as-is for the providers you want to offer your users.
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-          firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-          firebase.auth.GithubAuthProvider.PROVIDER_ID,
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-          firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
-        ],
-      };
-
-      // Initialize the FirebaseUI Widget using Firebase.
-      const ui = new firebaseui.auth.AuthUI(firebase.auth());
-      // The start method will wait until the DOM is loaded.
-      ui.start("#firebaseui-auth-container", uiConfig);
-    </script>
+    <script type="module" src="main.js"></script>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg sticky-top mb-3 bg-body-tertiary">
-      <div class="container">
+      <div class="container-fluid">
         <a class="navbar-brand" href="#">Yaba</a>
+        <button id="signout" type="button" class="d-none btn btn-link">Sign out</button>
       </div>
     </nav>
 
     <div class="container">
-      <div id="firebaseui-auth-container"></div>
-      <div class="d-none">
+      <div id="signin-card" class="card d-none mx-auto mw-100" style="width: 36rem">
+        <div class="card-body">
+          <img
+            src="icons/favicon-128.png"
+            width="128"
+            height="128"
+            class="rounded-circle d-block mx-auto mb-3"
+            alt="Yaba logo"
+          />
+          <p class="text-center">Choose an option to sign in below.</p>
+          <div id="firebaseui-auth-container"></div>
+          <div id="loader-container" class="d-flex justify-content-center">
+            <div class="spinner-border m-5" role="status">
+              <span class="visually-hidden">Loading…</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="router-outlet" class="d-none">
         <div class="input-group mb-3">
           <label for="total-budget" class="input-group-text">Total budget</label>
           <span class="input-group-text">$</span>
